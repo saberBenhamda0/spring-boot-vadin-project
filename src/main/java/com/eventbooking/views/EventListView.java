@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Route("events")
+@Route(value = "events", layout = MainLayout.class)
 @PageTitle("Événements | Event Booking")
 @AnonymousAllowed
 public class EventListView extends VerticalLayout {

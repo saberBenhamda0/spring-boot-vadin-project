@@ -64,7 +64,7 @@ public class Event {
 
     private String imageUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "organisateur_id", nullable = false)
     @ToString.Exclude
     private User organisateur;

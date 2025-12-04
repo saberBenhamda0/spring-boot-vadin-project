@@ -16,7 +16,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import java.util.List;
 
-@Route("")
+@Route(value = "", layout = MainLayout.class)
 @PageTitle("Accueil | Event Booking")
 @AnonymousAllowed
 public class HomeView extends VerticalLayout {

@@ -160,6 +160,61 @@ public class UserService {
         return userRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(searchTerm, searchTerm);
     }
 
+    /**
+     * Get all users
+     */
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    /**
+     * Update user (for admin)
+     */
+    public User updateUser(Long userId, User updatedUser) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Utilisateur non trouvé"));
+
+        user.setNom(updatedUser.getNom());
+        user.setPrenom(updatedUser.getPrenom());
+        user.setEmail(updatedUser.getEmail());
+        user.setTelephone(updatedUser.getTelephone());
+
+        return userRepository.save(user);
+    }
+
+    /**
+     * Deactivate user (for admin)
+     */
+    public void deactivateUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Utilisateur non trouvé"));
+
+        user.setActif(false);
+        userRepository.save(user);
+    }
+
+    /**
+     * Activate user (for admin)
+     */
+    public void activateUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Utilisateur non trouvé"));
+
+        user.setActif(true);
+        userRepository.save(user);
+    }
+
+    /**
+     * Change user role (for admin)
+     */
+    public void changeUserRole(Long userId, Role newRole) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Utilisateur non trouvé"));
+
+        user.setRole(newRole);
+        userRepository.save(user);
+    }
+
     // DTO for user statistics
     public record UserStatistics(long eventsCreated, long reservationsMade, Double totalSpent) {
     }

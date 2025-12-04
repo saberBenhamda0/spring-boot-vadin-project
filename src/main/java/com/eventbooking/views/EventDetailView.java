@@ -12,7 +12,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import java.time.format.DateTimeFormatter;
 
-@Route("event/:eventId")
+@Route(value = "event/:eventId", layout = MainLayout.class)
 @PageTitle("Détails de l'événement | Event Booking")
 @AnonymousAllowed
 public class EventDetailView extends VerticalLayout implements HasUrlParameter<Long> {
