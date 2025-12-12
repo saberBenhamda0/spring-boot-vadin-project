@@ -120,9 +120,9 @@ public class ReservationService {
         User user = User.builder().id(userId).build();
 
         if (statut != null) {
-            return reservationRepository.findByUtilisateurAndStatut(user, statut);
+            return reservationRepository.findByUtilisateurAndStatutWithEvenement(user, statut);
         }
-        return reservationRepository.findByUtilisateur(user);
+        return reservationRepository.findByUtilisateurWithEvenement(user);
     }
 
     /**
@@ -178,7 +178,7 @@ public class ReservationService {
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new ResourceNotFoundException("Événement non trouvé"));
 
-        return reservationRepository.findByEvenement(event);
+        return reservationRepository.findByEvenementWithUtilisateur(event);
     }
 
     /**
@@ -203,7 +203,7 @@ public class ReservationService {
      * Get all reservations
      */
     public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
+        return reservationRepository.findAllWithUtilisateurAndEvenement();
     }
 
     /**

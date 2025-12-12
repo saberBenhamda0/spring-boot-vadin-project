@@ -160,7 +160,7 @@ public class AllEventsManagementView extends VerticalLayout {
         viewButton.addThemeVariants(ButtonVariant.LUMO_SMALL);
         viewButton.getElement().setAttribute("title", "Voir les réservations");
         viewButton.addClickListener(
-                e -> getUI().ifPresent(ui -> ui.navigate("organizer/event/" + event.getId() + "/reservations")));
+                e -> getUI().ifPresent(ui -> ui.navigate("organizer/event-reservations/" + event.getId())));
 
         Button editButton = new Button(VaadinIcon.EDIT.create());
         editButton.addThemeVariants(ButtonVariant.LUMO_SMALL);

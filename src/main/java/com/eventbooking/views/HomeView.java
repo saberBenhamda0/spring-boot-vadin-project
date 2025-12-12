@@ -123,7 +123,7 @@ public class HomeView extends VerticalLayout {
 
         card.add(category, title, location, price);
 
-        card.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(EventDetailView.class, event.getId())));
+        card.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate("event/" + event.getId())));
 
         return card;
     }

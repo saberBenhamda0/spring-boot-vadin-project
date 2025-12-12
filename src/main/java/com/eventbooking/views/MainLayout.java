@@ -43,6 +43,9 @@ public class MainLayout extends AppLayout {
             currentUser = userOpt.get();
             createHeader();
             createDrawer();
+        } else {
+            // Create simple header for anonymous users
+            createAnonymousHeader();
         }
     }
 
@@ -92,6 +95,52 @@ public class MainLayout extends AppLayout {
         headerLayout.setPadding(true);
 
         addToNavbar(headerLayout);
+    }
+
+    private void createAnonymousHeader() {
+        H1 logo = new H1("Event Booking");
+        logo.addClassNames(
+                LumoUtility.FontSize.LARGE,
+                LumoUtility.Margin.MEDIUM);
+        logo.getStyle().set("color", "#667eea");
+        logo.getStyle().set("cursor", "pointer");
+        logo.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(HomeView.class)));
+
+        Button loginButton = new Button("Connexion", VaadinIcon.SIGN_IN.create());
+        loginButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        loginButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate("login")));
+
+        Button registerButton = new Button("Inscription");
+        registerButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        registerButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate("register")));
+
+        HorizontalLayout buttonLayout = new HorizontalLayout(loginButton, registerButton);
+        buttonLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+        buttonLayout.setSpacing(true);
+
+        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo);
+        header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+        header.expand(logo);
+        header.setWidthFull();
+        header.addClassNames(
+                LumoUtility.Padding.Vertical.NONE,
+                LumoUtility.Padding.Horizontal.MEDIUM);
+
+        HorizontalLayout headerLayout = new HorizontalLayout(header, buttonLayout);
+        headerLayout.setWidthFull();
+        headerLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
+        headerLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+        headerLayout.setPadding(true);
+
+        addToNavbar(headerLayout);
+
+        // Create simple drawer for anonymous users
+        VerticalLayout navigation = new VerticalLayout();
+        navigation.setPadding(true);
+        navigation.setSpacing(true);
+        navigation.add(createNavLink("Accueil", HomeView.class, VaadinIcon.HOME));
+        navigation.add(createNavLink("Événements", EventListView.class, VaadinIcon.CALENDAR));
+        addToDrawer(navigation);
     }
 
     private void createDrawer() {

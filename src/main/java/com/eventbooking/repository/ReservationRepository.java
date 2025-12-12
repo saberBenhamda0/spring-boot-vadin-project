@@ -57,4 +57,29 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
      * Find all reservations by event
      */
     List<Reservation> findByEvenement(Event event);
+
+    /**
+     * Find all reservations by event with eager loading of utilisateur
+     */
+    @Query("SELECT r FROM Reservation r JOIN FETCH r.utilisateur WHERE r.evenement = :event")
+    List<Reservation> findByEvenementWithUtilisateur(@Param("event") Event event);
+
+    /**
+     * Find all reservations with eager loading of utilisateur and evenement
+     */
+    @Query("SELECT r FROM Reservation r JOIN FETCH r.utilisateur JOIN FETCH r.evenement")
+    List<Reservation> findAllWithUtilisateurAndEvenement();
+
+    /**
+     * Find reservations by utilisateur with eager loading of evenement
+     */
+    @Query("SELECT r FROM Reservation r JOIN FETCH r.evenement WHERE r.utilisateur = :user")
+    List<Reservation> findByUtilisateurWithEvenement(@Param("user") User user);
+
+    /**
+     * Find reservations by utilisateur and statut with eager loading of evenement
+     */
+    @Query("SELECT r FROM Reservation r JOIN FETCH r.evenement WHERE r.utilisateur = :user AND r.statut = :statut")
+    List<Reservation> findByUtilisateurAndStatutWithEvenement(@Param("user") User user,
+            @Param("statut") StatutReservation statut);
 }

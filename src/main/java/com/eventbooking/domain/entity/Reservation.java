@@ -14,6 +14,7 @@ import java.util.Random;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = { "utilisateur", "evenement" })
 public class Reservation {
 
     @Id

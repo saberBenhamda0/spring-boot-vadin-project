@@ -71,7 +71,7 @@ public class MyEventsView extends VerticalLayout {
 
         Button createButton = new Button("Créer un Événement", VaadinIcon.PLUS.create());
         createButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        createButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate("organizer/event/new")));
+        createButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate("organizer/event/edit")));
 
         HorizontalLayout header = new HorizontalLayout(title, createButton);
         header.setWidthFull();
@@ -155,7 +155,7 @@ public class MyEventsView extends VerticalLayout {
         viewButton.addThemeVariants(ButtonVariant.LUMO_SMALL);
         viewButton.getElement().setAttribute("title", "Voir les réservations");
         viewButton.addClickListener(
-                e -> getUI().ifPresent(ui -> ui.navigate("organizer/event/" + event.getId() + "/reservations")));
+                e -> getUI().ifPresent(ui -> ui.navigate("organizer/event-reservations/" + event.getId())));
 
         Button editButton = new Button(VaadinIcon.EDIT.create());
         editButton.addThemeVariants(ButtonVariant.LUMO_SMALL);

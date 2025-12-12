@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * View for displaying event reservations
  */
-@Route(value = "organizer/event/reservations", layout = MainLayout.class)
+@Route(value = "organizer/event-reservations", layout = MainLayout.class)
 @PageTitle("Réservations | Event Booking")
 @RolesAllowed({ "ORGANIZER", "ADMIN" })
 public class EventReservationsView extends VerticalLayout implements HasUrlParameter<Long> {

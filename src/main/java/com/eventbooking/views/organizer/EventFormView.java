@@ -29,6 +29,7 @@ import com.vaadin.flow.data.validator.IntegerRangeValidator;
 import com.vaadin.flow.data.validator.StringLengthValidator;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
@@ -38,10 +39,10 @@ import java.time.LocalDateTime;
 /**
  * Form view for creating and editing events
  */
-@Route(value = "organizer/event", layout = MainLayout.class)
+@Route(value = "organizer/event/edit", layout = MainLayout.class)
 @PageTitle("Événement | Event Booking")
 @RolesAllowed({ "ORGANIZER", "ADMIN" })
-public class EventFormView extends VerticalLayout implements HasUrlParameter<String> {
+public class EventFormView extends VerticalLayout implements HasUrlParameter<Long> {
 
     private final SecurityService securityService;
     private final EventService eventService;
@@ -78,10 +79,9 @@ public class EventFormView extends VerticalLayout implements HasUrlParameter<Str
     }
 
     @Override
-    public void setParameter(BeforeEvent beforeEvent, String parameter) {
-        if (parameter.startsWith("edit/")) {
+    public void setParameter(BeforeEvent beforeEvent, @OptionalParameter Long eventId) {
+        if (eventId != null) {
             isEditMode = true;
-            Long eventId = Long.parseLong(parameter.substring(5));
             try {
                 event = eventService.findById(eventId);
                 // Check ownership
@@ -99,7 +99,7 @@ public class EventFormView extends VerticalLayout implements HasUrlParameter<Str
                 getUI().ifPresent(ui -> ui.navigate(MyEventsView.class));
                 return;
             }
-        } else if (parameter.equals("new")) {
+        } else {
             isEditMode = false;
             event = Event.builder()
                     .organisateur(currentUser)

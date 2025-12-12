@@ -31,7 +31,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Reservation form view
  */
-@Route(value = "event/reserve", layout = MainLayout.class)
+@Route(value = "reserve", layout = MainLayout.class)
 @PageTitle("Réserver | Event Booking")
 @RolesAllowed("CLIENT")
 public class ReservationFormView extends VerticalLayout implements HasUrlParameter<Long> {
