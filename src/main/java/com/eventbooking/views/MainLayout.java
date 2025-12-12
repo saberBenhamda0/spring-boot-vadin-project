@@ -135,12 +135,13 @@ public class MainLayout extends AppLayout {
         addToNavbar(headerLayout);
 
         // Create simple drawer for anonymous users
-        VerticalLayout navigation = new VerticalLayout();
-        navigation.setPadding(true);
-        navigation.setSpacing(true);
-        navigation.add(createNavLink("Accueil", HomeView.class, VaadinIcon.HOME));
-        navigation.add(createNavLink("Événements", EventListView.class, VaadinIcon.CALENDAR));
-        addToDrawer(navigation);
+        // VerticalLayout navigation = new VerticalLayout();
+        // navigation.setPadding(true);
+        // navigation.setSpacing(true);
+        // navigation.add(createNavLink("Accueil", HomeView.class, VaadinIcon.HOME));
+        // navigation.add(createNavLink("Événements", EventListView.class,
+        // VaadinIcon.CALENDAR));
+        // addToDrawer(navigation);
     }
 
     private void createDrawer() {
@@ -174,7 +175,7 @@ public class MainLayout extends AppLayout {
     private RouterLink createNavLink(String text, Class<? extends com.vaadin.flow.component.Component> view,
             VaadinIcon icon) {
         RouterLink link = new RouterLink();
-        link.add(icon.create(), new Span(" " + text));
+        link.add(icon.create(), new Span("\t" + "\t" + text));
         link.setRoute(view);
         link.getStyle()
                 .set("padding", "10px 15px")
@@ -182,7 +183,9 @@ public class MainLayout extends AppLayout {
                 .set("text-decoration", "none")
                 .set("color", "#333")
                 .set("display", "flex")
+                .set("flex-direction", "row")
                 .set("align-items", "center")
+                .set("gap", "10px") // <-- SPACE BETWEEN ICON & TEXT
                 .set("transition", "background 0.2s");
 
         return link;
