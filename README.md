@@ -22,33 +22,33 @@ A comprehensive Event Booking Management System built with Spring Boot and Vaadi
 ```mermaid
 graph TD
     User((Utilisateur))
-    Browser[Navigateur Web]
+    Browser["Navigateur Web"]
     
     subgraph "Application Spring Boot"
         subgraph "Présentation (Vaadin)"
-            Auth[Security Config]
-            Views[Vues (Views)]
+            Auth["Security Config"]
+            Views["Vues (Views)"]
         end
         
         subgraph "Logique Métier"
-            Services[Services]
+            Services["Services"]
         end
         
         subgraph "Accès aux Données"
-            Repos[Repositories]
+            Repos["Repositories"]
         end
         
         subgraph "Modèle"
-            Entities[Entités JPA]
+            Entities["Entités JPA"]
         end
     end
     
     subgraph "Persistance"
-        DB[(Base de données H2)]
+        DB[("Base de données H2")]
     end
 
     User -->|HTTPS| Browser
-    Browser <-->|Vaadin Flow| Views
+    Browser <-->|"Vaadin Flow"| Views
     
     Views --> Services
     Views -.->|Protection| Auth
