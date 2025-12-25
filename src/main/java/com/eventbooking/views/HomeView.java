@@ -32,7 +32,6 @@ public class HomeView extends VerticalLayout {
 
         createHeroSection();
         createFeaturedEvents();
-        createCategoryFilters();
     }
 
     private void createHeroSection() {
@@ -128,32 +127,34 @@ public class HomeView extends VerticalLayout {
         return card;
     }
 
-    private void createCategoryFilters() {
-        VerticalLayout section = new VerticalLayout();
-        section.setWidthFull();
-        section.setPadding(true);
+    // private void createCategoryFilters() {
+    // VerticalLayout section = new VerticalLayout();
+    // section.setWidthFull();
+    // section.setPadding(true);
 
-        H2 sectionTitle = new H2("Parcourir par catégorie");
-        sectionTitle.getStyle().set("color", "#333");
+    // H2 sectionTitle = new H2("Parcourir par catégorie");
+    // sectionTitle.getStyle().set("color", "#333");
 
-        HorizontalLayout categoriesLayout = new HorizontalLayout();
-        categoriesLayout.setWidthFull();
-        categoriesLayout.getStyle().set("flex-wrap", "wrap");
+    // HorizontalLayout categoriesLayout = new HorizontalLayout();
+    // categoriesLayout.setWidthFull();
+    // categoriesLayout.getStyle().set("flex-wrap", "wrap");
 
-        for (Categorie categorie : Categorie.values()) {
-            Button categoryButton = new Button(categorie.getIcon() + " " + categorie.getLabel());
-            categoryButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
-            categoryButton.getStyle()
-                    .set("background", categorie.getColor())
-                    .set("color", "white")
-                    .set("margin", "10px");
+    // for (Categorie categorie : Categorie.values()) {
+    // Button categoryButton = new Button(categorie.getIcon() + " " +
+    // categorie.getLabel());
+    // categoryButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
+    // categoryButton.getStyle()
+    // .set("background", categorie.getColor())
+    // .set("color", "white")
+    // .set("margin", "10px");
 
-            categoryButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(EventListView.class)));
+    // categoryButton.addClickListener(e -> getUI().ifPresent(ui ->
+    // ui.navigate(EventListView.class)));
 
-            categoriesLayout.add(categoryButton);
-        }
+    // categoriesLayout.add(categoryButton);
+    // }
 
-        section.add(sectionTitle, categoriesLayout);
-        add(section);
-    }
+    // section.add(sectionTitle, categoriesLayout);
+    // add(section);
+    // }
 }
